@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingProject1.Utilities;
 
 namespace TrainingProject1.Pages
 {
@@ -45,7 +46,9 @@ namespace TrainingProject1.Pages
             // click on "Save" button
             IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
             saveButton.Click();
-            Thread.Sleep(2000);
+            //Thread.Sleep(2000);
+
+            Wait.WaitForElementToBeClickable(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]/span", 8);
 
             // check that new Time record has been created successfully
             IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
@@ -124,7 +127,6 @@ namespace TrainingProject1.Pages
             IWebElement gotothelastpageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             gotothelastpageButton.Click();
             Thread.Sleep(1500);
-
 
         }
 
