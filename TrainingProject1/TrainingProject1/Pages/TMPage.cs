@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,17 +57,25 @@ namespace TrainingProject1.Pages
             Thread.Sleep(1000);
 
             IWebElement newCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            IWebElement newDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+            IWebElement newPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
 
-            //IWebElement newCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            //Exmaple 1 of Assertions
+            Assert.That(newCode.Text == "CNTestNov2022", "Actual Code and Expected Code do not match");
+            Assert.That(newDescription.Text == "CNTestNov2022", "Actual Description  and Expected Description do not match");
+            Assert.That(newPrice.Text == "$15.00", "Actual Description  and Expected Description do not match");
 
-            if (newCode.Text == "CNTestNov2022")
-            {
-                Console.WriteLine("Time record created successfully.");
-            }
-            else
-            {
-                Console.WriteLine("Time record hasn't been created successfully");
-            }
+            //Exmaple 2 of Assertions
+            //if (newCode.Text == "CNTestNov2022")
+            //{
+            //    //Console.WriteLine("Time record created successfully.");
+            //    Assert.Pass("Time Record Created Sucessfully");
+            //}
+
+            //else
+            //{
+            //    Assert.Fail("Time record hasn't been created successfully");
+            //}
 
         }
 
