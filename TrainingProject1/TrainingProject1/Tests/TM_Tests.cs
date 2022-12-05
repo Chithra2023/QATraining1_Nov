@@ -1,74 +1,44 @@
-﻿using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TrainingProject1.Pages;
-using NUnit.Framework;
-using TrainingProject1.Utilities;
-
+﻿
 namespace TrainingProject1.Tests
 {
     [TestFixture]
+    [Parallelizable]
     public class TM_Tests : CommonDriver
     {
-        [SetUp]
-        public void LoginSteps()
+
+        [Test, Order(1), Description("Check if user is able to create a new record")]
+        public void CreateTM_Test()
         {
-            driver = new ChromeDriver();
-            // login page object initialization and definition
-            LoginPage loginpageobj = new LoginPage();
-            loginpageobj.LoginActions(driver);
-
-
             // Home page object initialization and definition
             HomePage homepageobj = new HomePage();
             homepageobj.GoToTMPage(driver);
-        }
 
-        [Test]
-        public void CreateTM_Test()
-        {
             // TM page object initialization and definition
             TMPage tmPageobj = new TMPage();
             tmPageobj.CreateTM(driver);
         }
 
-        [Test]
+        [Test, Order(2), Description(" Check if user is able to edit an existing record")]
         public void EditTM_Test()
         {
+            // Home page object initialization and definition
+            HomePage homepageobj = new HomePage();
+            homepageobj.GoToTMPage(driver);
+
             TMPage tmPageobj = new TMPage();
             tmPageobj.EditTM(driver);
         }
 
-        [Test]
+        [Test, Order(3), Description("Check if user can delete a record")]
         public void DeleteTM_Test()
         {
+            // Home page object initialization and definition
+            HomePage homepageobj = new HomePage();
+            homepageobj.GoToTMPage(driver);
+
             TMPage tmPageobj = new TMPage();
             tmPageobj.DeleteTM(driver);
         }
-
-        [TearDown]
-        public void CloseTestRun()
-        {
-            driver.Quit();
-                    }
-
-        
-        
-        
-        // Open the browser
-        
-
-
-
-
-      
-
-    
-
-       
+           
     }
 }

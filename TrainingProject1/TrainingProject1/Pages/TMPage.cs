@@ -1,12 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TrainingProject1.Utilities;
-
+﻿
 namespace TrainingProject1.Pages
 {
     public class TMPage
@@ -49,12 +41,13 @@ namespace TrainingProject1.Pages
             saveButton.Click();
             //Thread.Sleep(2000);
 
-            Wait.WaitForElementToBeClickable(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]/span", 8);
+            Wait.WaitForElementToBeClickable(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]/span", 10);
 
             // check that new Time record has been created successfully
+            Thread.Sleep(4000);
             IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
             goToLastPageButton.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
 
             IWebElement newCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
             IWebElement newDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
@@ -85,6 +78,7 @@ namespace TrainingProject1.Pages
             IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             goToLastPageButton.Click();
 
+            Thread.Sleep(3000);
             IWebElement findNewRecordCreated = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
 
             if (findNewRecordCreated.Text == "CNTestNov2022")
@@ -96,7 +90,7 @@ namespace TrainingProject1.Pages
             }
             else
             {
-               Console.WriteLine ("Record to be edited hasn't been found. Record not edited");
+               Assert.Fail("Record to be edited hasn't been found. Record not edited");
             }
             // edit code textbox 
             IWebElement codeTextbox = driver.FindElement(By.Id("Code"));
@@ -146,6 +140,7 @@ namespace TrainingProject1.Pages
             goToLastPageButton.Click();
 
             // click delete button
+            Thread.Sleep(3000);
             IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
             deleteButton.Click();
             Thread.Sleep(1500);
