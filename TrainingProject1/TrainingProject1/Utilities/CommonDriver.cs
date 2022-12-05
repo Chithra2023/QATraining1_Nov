@@ -3,8 +3,8 @@ namespace TrainingProject1.Utilities
 {
     public class CommonDriver
     {
-        public static IWebDriver driver;
-        [SetUp]
+        public IWebDriver driver;
+        [OneTimeSetUp]
         public void LoginSteps()
         {
             driver = new ChromeDriver();
@@ -12,7 +12,7 @@ namespace TrainingProject1.Utilities
             LoginPage loginpageobj = new LoginPage();
             loginpageobj.LoginActions(driver);
         }
-        [TearDown]
+        [OneTimeTearDown]
         public void CloseTestRun()
         {
             driver.Quit();
