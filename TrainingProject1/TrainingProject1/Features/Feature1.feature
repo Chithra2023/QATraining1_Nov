@@ -14,11 +14,11 @@ Scenario: Create time and material record with valid details
 Scenario Outline: Edit existing material or time record with valid details
 	Given I logged in to turnup portal sucessfully
 	When I navigate to Time and Material page
-	And I update '<Description>' of an existing Time & Material record
-	Then The record should have an updated '<Description>'
+	And I update '<Description>','<Code>', '<Price>' of an existing Time & Material record
+	Then The record should have an updated '<Description>', '<Code>' and '<Price>'
 
 Examples: 
-	| Description |
-	| Updated Desc 01  |
-	| Desc 01  |
-	| CN_Desc 03  |
+	| Description | Code | Price |
+	| Updated 01  | CN1  | 30    |
+	| Desc 01     | CN2  | 200   |
+	| CN_Desc 03  | CN3  | 1000  |
