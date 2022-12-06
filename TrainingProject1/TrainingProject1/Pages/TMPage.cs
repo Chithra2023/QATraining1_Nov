@@ -50,30 +50,45 @@ namespace TrainingProject1.Pages
             goToLastPageButton.Click();
             Thread.Sleep(3000);
 
-            IWebElement newCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            IWebElement newDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
-            IWebElement newPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
+            //IWebElement newCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            //IWebElement newDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+            //IWebElement newPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
 
-            //Exmaple 1 of Assertions
-            Assert.That(newCode.Text == "CNTestNov2022", "Actual Code and Expected Code do not match");
-            Assert.That(newDescription.Text == "CNTestNov2022", "Actual Description  and Expected Description do not match");
-            Assert.That(newPrice.Text == "$15.00", "Actual Description  and Expected Description do not match");
+            ////Exmaple 1 of Assertions
+            //Assert.That(newCode.Text == "CNTestNov2022", "Actual Code and Expected Code do not match");
+            //Assert.That(newDescription.Text == "CNTestNov2022", "Actual Description  and Expected Description do not match");
+            //Assert.That(newPrice.Text == "$15.00", "Actual Description  and Expected Description do not match");
 
-            //Exmaple 2 of Assertions
-            //if (newCode.Text == "CNTestNov2022")
-            //{
-            //    //Console.WriteLine("Time record created successfully.");
-            //    Assert.Pass("Time Record Created Sucessfully");
-            //}
+                        //Exmaple 2 of Assertions
+                        //if (newCode.Text == "CNTestNov2022")
+                        //{
+                        //    //Console.WriteLine("Time record created successfully.");
+                        //    Assert.Pass("Time Record Created Sucessfully");
+                        //}
 
-            //else
-            //{
-            //    Assert.Fail("Time record hasn't been created successfully");
-            //}
+                        //else
+                        //{
+                        //    Assert.Fail("Time record hasn't been created successfully");
+                        //}
 
         }
 
-        public void EditTM(IWebDriver driver)
+        public string GetCode(IWebDriver driver)
+        {
+            IWebElement actualCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            return actualCode.Text;
+        }
+        public string GetDescription(IWebDriver driver)
+        {
+            IWebElement actualDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+            return actualDescription.Text;
+        }
+        public string GetPrice(IWebDriver driver)
+        {
+            IWebElement actualPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
+            return actualPrice.Text;
+        }
+        public void EditTM(IWebDriver driver, string Description)
         {
             Thread.Sleep(3000); 
 
@@ -106,7 +121,7 @@ namespace TrainingProject1.Pages
             // edit description textbox
             IWebElement descriptionTextbox = driver.FindElement(By.Id("Description"));
             descriptionTextbox.Clear();
-            descriptionTextbox.SendKeys("CNTestNov2022_01");
+            descriptionTextbox.SendKeys(Description);
             Thread.Sleep(1500);
 
             // edit price per unit textbox
@@ -133,6 +148,12 @@ namespace TrainingProject1.Pages
             gotothelastpageButton.Click();
             Thread.Sleep(1500);
 
+        }
+
+        public string GetEditedDescription(IWebDriver driver)
+        {
+            IWebElement editedDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+            return editedDescription.Text;
         }
 
         public void DeleteTM(IWebDriver driver)

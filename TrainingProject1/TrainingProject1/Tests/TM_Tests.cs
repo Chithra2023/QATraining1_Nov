@@ -26,7 +26,7 @@ namespace TrainingProject1.Tests
             homepageobj.GoToTMPage(driver);
 
             TMPage tmPageobj = new TMPage();
-            tmPageobj.EditTM(driver);
+            //tmPageobj.EditTM(driver);
         }
 
         [Test, Order(3), Description("Check if user can delete a record")]
